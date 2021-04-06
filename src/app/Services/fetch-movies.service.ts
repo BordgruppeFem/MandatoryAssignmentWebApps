@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, filter, find, map, tap } from 'rxjs/operators';
 import Movie from '../models/movie';
@@ -10,7 +9,7 @@ import Movie from '../models/movie';
 })
 export class FetchMoviesService {
   constructor(private http: HttpClient) { }
-  public currentPage: number = 1;
+  public currentPage = 1;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     baseUrl: 'https://api.themoviedb.org/3/movie/',
@@ -20,17 +19,17 @@ export class FetchMoviesService {
   };
   public Movies: Observable<Movie[]>;
 
-  //returns observable
+  // returns observable
   getMoviesFromQuery(query: string): Observable<Movie[]> {
-    if (query === null || query === "") { return this.getMovies(); }
-    return this.http.get<Movie[]>(`https://api.themoviedb.org/3/search/movie?query=${query}&page=${this.currentPage}`, this.httpOptions);
-    // .pipe(
-    //   map((res: any) => {
-    //     return res.results.map((item: Movie) => {
-    //       return item;
-    //     });
-    // })
-    // );
+    if (query === null || query === '') { return this.getMovies(); }
+    return this.http.get<Movie[]>(`https://api.themoviedb.org/3/search/movie?query=${query}&page=${this.currentPage}`, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res.results.map((item: Movie) => {
+            return item;
+          });
+        })
+      );
   }
 
   getMovies(): Observable<Movie[]> {
@@ -46,7 +45,7 @@ export class FetchMoviesService {
   }
 
   getMovie(id: number): Observable<Movie> {
-    // let movie = this.getBufferedMovies().pipe(map(movies => movies.find((m: Movie) => m.id === id))) 
+    // let movie = this.getBufferedMovies().pipe(map(movies => movies.find((m: Movie) => m.id === id)))
     return this.http
       .get<Movie>(this.httpOptions.baseUrl + `${id}`, this.httpOptions)
       .pipe(
