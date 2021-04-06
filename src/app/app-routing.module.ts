@@ -7,12 +7,13 @@ import { MovielistComponent } from './component/Movie/movielist/movielist.compon
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'movie/:id', component: MoviedetailComponent },
+  { path: 'movies/:term', component: MovielistComponent },
   { path: 'movies', component: MovielistComponent },
   { path: 'home', component: HomeComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'disabled'})],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchMoviesService } from 'src/app/Services/fetch-movies.service';
+import Movie from 'src/app/models/movie';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +10,6 @@ import { FetchMoviesService } from 'src/app/Services/fetch-movies.service';
 })
 export class HomeComponent implements OnInit {
   constructor(private fetchMovies: FetchMoviesService) {}
-
   ngOnInit(): void {
     // this.fetchMovies.getMovies();
   }

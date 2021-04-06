@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common'
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -12,11 +13,17 @@ import { FetchMoviesService } from 'src/app/Services/fetch-movies.service';
 })
 export class MoviedetailComponent implements OnInit {
   public movie: Movie;
+
   constructor(
     private route: ActivatedRoute,
-    private fetchMovie: FetchMoviesService
-  ) {}
+    private fetchMovie: FetchMoviesService,
+    private location: Location
+  ) { }
 
+
+  goBack(){
+    this.location.back();
+  }
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       let id = Number(params.get('id'));

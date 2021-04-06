@@ -10,6 +10,7 @@ import { MovieComponent } from './component/Movie/movie/movie.component';
 import { MovielistComponent } from './component/Movie/movielist/movielist.component';
 import { FetchMoviesService } from './Services/fetch-movies.service';
 import { MoviedetailComponent } from './component/Movie/moviedetail/moviedetail.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { MoviedetailComponent } from './component/Movie/moviedetail/moviedetail.
     MovielistComponent,
     MoviedetailComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [FetchMoviesService],
   bootstrap: [AppComponent],
 })
